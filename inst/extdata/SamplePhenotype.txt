@@ -1,0 +1,7 @@
+"samplename"	"group"
+"DSRP651"	"g1"
+"DSRP652"	"g1"
+"DSRP653"	"g1"
+"DSRP655"	"g2"
+"DSRP656"	"g2"
+"DSRP684"	"g2"
