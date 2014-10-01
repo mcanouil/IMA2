@@ -1,7 +1,7 @@
 IMA2 (Illumina Methylation Analyzer 2)
 ======================================
 
-IMA2 is based on IMA package.
+*IMA2 is based on IMA package.*
 
 IMA2 is a package designed to automate the pipeline for exploratory analysis and summarization of site-level and region-level methylation changes in epigenetic studies utilizing the 450K DNA methylation microarray
 IMA2 automates the tasks commonly required for the exploratory analysis and summarization of epigenetic data sets utilizing the 450K DNA methylation microarray. The package makes use of Illumina methylation annotation for region definition, as well as several Bioconductor packages for various preprocessing and differential testing steps. There are two major differences between IMA2 and existing packages for Infinium methylation microarray analysis. First, instead of analyzing CpG site only, IMA2 provide both site-level and region-level methylation analysis. Second, instead of manually calling individual R functions at the command line, IMA2 provides a pipeline which automate the tasks commonly required for the exploratory analysis and summarization of 450K microarray data. The user can either run the pipeline with default setting or specify optional routes in the parameter file of pipeline.
@@ -17,7 +17,7 @@ To install the latest development builds directly from GitHub, run this instead:
 if (!require("devtools")) { install.packages("devtools") } else {}
 devtools::install_github("mcanouil/IMA2")
 ```
-Load *IMA2*:
+Load **IMA2**:
 ```r
 library(IMA2)
 ```
@@ -73,8 +73,9 @@ locidiff = FALSE
 #(if "locidiff" is not true)
 locidiffgroup = c("g1","g2")
 
-# If FALSE, keep the loci whose methylation level are measured by probes containing SNP(s) at/near
-# the targeted CpG site; otherwise, filter out the list of SNP containing loci
+# If FALSE, keep the loci whose methylation level are measured by probes
+# containing SNP(s) at/near the targeted CpG site; otherwise,
+# filter out the list of SNP containing loci
 # by specifying the snp file name and location
 snpfilter = FALSE
 
@@ -105,7 +106,8 @@ Padj = "BH"
 #mean/median/tbrm: "tbrm" is Tukey's Biweight robust average
 indexmethod = "mean"
 
-# If ture, the differential test methods would change to the corresponding paired-test methods
+# If true, the differential test methods would change to the
+# corresponding paired-test methods
 paired = FALSE
 ```
 
