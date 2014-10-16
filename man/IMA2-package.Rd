@@ -2,6 +2,8 @@
 \alias{IMA2-package}
 \alias{IMA2}
 \alias{IMA2-class}
+\alias{snpsites-dataset}
+\alias{transcript}
 \docType{package}
 \title{IMA2 (Illumina Methylation Analyzer 2)}
 \description{
