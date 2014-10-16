@@ -40,14 +40,14 @@ PhenoFileName = "../data/SamplePhenotype.txt"
 # The cutoff for sample-level detection Pvalue
 samplefilterdetectP = 1e-5
 
-# The percent of loci with detection Pvalue less than "samplefilterdetectP" 
+# The percent of loci with detection Pvalue less than "samplefilterdetectP"
 # in each sample
 samplefilterperc = 0.75
 
 # The cutoff for site-level detection Pvalue
 sitefilterdetectP = 0.05
 
-# The percent of samples with detection Pvalue less than "sitefilterdetectP" 
+# The percent of samples with detection Pvalue less than "sitefilterdetectP"
 # for each site
 sitefilterperc = 0.5
 
@@ -81,8 +81,8 @@ locidiffgroup = c("g1","g2")
 # by specifying the snp file name and location
 snpfilter = FALSE
 
-# A list of SNP-containing probes (based on dbSNP v132) could be accessed 
-by the command: snpfilter = system.file("extdata/snpsites.txt",package ="IMA")
+# A list of SNP-containing probes (based on dbSNP v132) could be accessed
+# by the command: snpfilter = system.file("extdata/snpsites.txt",package ="IMA")
 ```
 
 #### 2.3. Site test
