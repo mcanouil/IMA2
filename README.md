@@ -3,6 +3,12 @@ IMA2 (Illumina Methylation Analyzer 2)
 
 *IMA2 is based on IMA package.*
 
+>**Aurhors:**
+>Wang D, Yan L, Hu Q, Sucheston LE, Higgins MJ, Ambrosone CB, Johnson CS, Smiraglia DJ, Liu S.
+>*IMA: an R package for high-throughput analysis of Illumina's 450K Infinium methylation data.*
+>Bioinformatics. 2012 Mar 1;28(5):729-30
+
+
 IMA2 is a package designed to automate the pipeline for exploratory analysis and summarization of site-level and region-level methylation changes in epigenetic studies utilizing the 450K DNA methylation microarray
 IMA2 automates the tasks commonly required for the exploratory analysis and summarization of epigenetic data sets utilizing the 450K DNA methylation microarray. The package makes use of Illumina methylation annotation for region definition, as well as several Bioconductor packages for various preprocessing and differential testing steps. There are two major differences between IMA2 and existing packages for Infinium methylation microarray analysis. First, instead of analyzing CpG site only, IMA2 provide both site-level and region-level methylation analysis. Second, instead of manually calling individual R functions at the command line, IMA2 provides a pipeline which automate the tasks commonly required for the exploratory analysis and summarization of 450K microarray data. The user can either run the pipeline with default setting or specify optional routes in the parameter file of pipeline.
 
