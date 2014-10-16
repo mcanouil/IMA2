@@ -3,27 +3,21 @@
 \docType{data}
 \alias{snpsites}
 
-\title{}
+\title{snpsites}
 
-\description{
-}
+\description{dbSNP}
 
-\usage{
+\usage{data(snpsites)}
 
-}
-
-\format{
-
-}
+% \format{}
 
 % \source{}
 
 % \references{}
 
-\seealso{
-}
+% \seealso{}
 
-\author{}
+% \author{}
 
 \keyword{datasets}
 \keyword{snpsites}
