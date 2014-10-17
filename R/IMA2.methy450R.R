@@ -51,7 +51,7 @@ IMA2.methy450R <- function (fileName, columnGrepPattern = list(beta = ".AVG_Beta
     rownames(group) <- group[index, 1]
     cat("Total CpG sites without any filtering are:", nrow(betamatrix), "\nTotal samples are:", ncol(betamatrix), "\n")
 
-    setClass("exprmethy450", representation(bmatrix = "matrix", annot = "matrix", detectP = "matrix", groupinfo = "data.frame"), where = topenv(parent.frame()))
+    # setClass("exprmethy450", representation(bmatrix = "matrix", annot = "matrix", detectP = "matrix", groupinfo = "data.frame"), where = topenv(parent.frame()))
     x.methy450 <- new("exprmethy450", bmatrix = as.matrix(betamatrix), annot = as.matrix(annotation), detectP = as.matrix(detect_p), groupinfo = group)
 
     cat("..........Starting Quality Control..........\n")
@@ -69,43 +69,43 @@ IMA2.methy450R <- function (fileName, columnGrepPattern = list(beta = ".AVG_Beta
     slotNames(x.methy450), "\n")
 
     cat("Basic Quality Control information can be found in QC.pdf file\n")
-    setMethod("show", "exprmethy450",
-        function(object){
-            cat("*** Class exprmethy450 , method Show ***\n")
-            cat("* BetaMatrix (limited to matrix 5x5) = ", paste("(", paste(dim(object@bmatrix), collapse = "x"), ")", sep = ""), "\n")
-            nrowShow <- min(5 , nrow(object@bmatrix))
-            ncolShow <- min(5 , ncol(object@bmatrix))
-            if (nrow(object@bmatrix)!=0) {
-                print(formatC(object@bmatrix[1:nrowShow, 1:ncolShow]), quote = FALSE)
-            } else {}
-            cat("* ..... .....\n\n")
+    # setMethod("show", "exprmethy450",
+        # function(object){
+            # cat("*** Class exprmethy450 , method Show ***\n")
+            # cat("* BetaMatrix (limited to matrix 5x5) = ", paste("(", paste(dim(object@bmatrix), collapse = "x"), ")", sep = ""), "\n")
+            # nrowShow <- min(5 , nrow(object@bmatrix))
+            # ncolShow <- min(5 , ncol(object@bmatrix))
+            # if (nrow(object@bmatrix)!=0) {
+                # print(formatC(object@bmatrix[1:nrowShow, 1:ncolShow]), quote = FALSE)
+            # } else {}
+            # cat("* ..... .....\n\n")
 
-            cat("* Detect P-Value (limited to matrix 5x5) = ", paste("(", paste(dim(object@detectP), collapse = "x"), ")", sep = ""), "\n")
-            nrowShow <- min(5 , nrow(object@detectP))
-            ncolShow <- min(5 , ncol(object@detectP))
-            if (nrow(object@detectP)!=0) {
-                print(formatC(object@detectP[1:nrowShow, 1:ncolShow]), quote = FALSE)
-            } else {}
-            cat("* ..... .....\n\n")
+            # cat("* Detect P-Value (limited to matrix 5x5) = ", paste("(", paste(dim(object@detectP), collapse = "x"), ")", sep = ""), "\n")
+            # nrowShow <- min(5 , nrow(object@detectP))
+            # ncolShow <- min(5 , ncol(object@detectP))
+            # if (nrow(object@detectP)!=0) {
+                # print(formatC(object@detectP[1:nrowShow, 1:ncolShow]), quote = FALSE)
+            # } else {}
+            # cat("* ..... .....\n\n")
 
-            cat("* Annotation (limited to matrix 5x5) = ", paste("(", paste(dim(object@annot), collapse = "x"), ")", sep = ""), "\n")
-            nrowShow <- min(5 , nrow(object@annot))
-            ncolShow <- min(5 , ncol(object@annot))
-            if (nrow(object@annot)!=0) {
-                print(formatC(object@annot[1:nrowShow, 1:ncolShow]), quote = FALSE)
-            } else {}
-            cat("* ..... .....\n\n")
+            # cat("* Annotation (limited to matrix 5x5) = ", paste("(", paste(dim(object@annot), collapse = "x"), ")", sep = ""), "\n")
+            # nrowShow <- min(5 , nrow(object@annot))
+            # ncolShow <- min(5 , ncol(object@annot))
+            # if (nrow(object@annot)!=0) {
+                # print(formatC(object@annot[1:nrowShow, 1:ncolShow]), quote = FALSE)
+            # } else {}
+            # cat("* ..... .....\n\n")
 
-            cat("* Group Information (limited to matrix 5x5) = ", paste("(", paste(dim(object@groupinfo), collapse = "x"), ")", sep = ""), "\n")
-            nrowShow <- min(5 , nrow(object@groupinfo))
-            ncolShow <- min(5 , ncol(object@groupinfo))
-            if (nrow(object@groupinfo)!=0) {
-                print(formatC(as.matrix(object@groupinfo[1:nrowShow, 1:ncolShow])), quote = FALSE)
-            } else {}
-            cat("* ..... .....\n\n")
+            # cat("* Group Information (limited to matrix 5x5) = ", paste("(", paste(dim(object@groupinfo), collapse = "x"), ")", sep = ""), "\n")
+            # nrowShow <- min(5 , nrow(object@groupinfo))
+            # ncolShow <- min(5 , ncol(object@groupinfo))
+            # if (nrow(object@groupinfo)!=0) {
+                # print(formatC(as.matrix(object@groupinfo[1:nrowShow, 1:ncolShow])), quote = FALSE)
+            # } else {}
+            # cat("* ..... .....\n\n")
 
-            cat("******* End Show (exprmethy450) *******\n")
-        }
-    )
+            # cat("******* End Show (exprmethy450) *******\n")
+        # }
+    # )
     return(x.methy450)
 }
