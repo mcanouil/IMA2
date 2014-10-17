@@ -15,8 +15,7 @@ setClass("methy450batch",
         SSHOREInd = "list",
         NSHELFInd = "list",
         SSHELFInd = "list"
-    ),
-    where = topenv(parent.frame())
+    )
 )
 
 setMethod("show", "methy450batch",
@@ -75,8 +74,7 @@ setClass("exprmethy450",
         annot = "matrix",
         detectP = "matrix",
         groupinfo = "data.frame"
-    ),
-    where = topenv(parent.frame())
+    )
 )
 
 setMethod("show", "exprmethy450",
