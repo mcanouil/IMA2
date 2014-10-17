@@ -1,4 +1,4 @@
-IMA2.methy450R <- function (fileName, columnGrepPattern = list(beta = ".AVG_Beta", detectp = ".Detection.Pval"), groupfile) {
+IMA2.methy450R <- function (fileName, columnGrepPattern = list(beta = ".AVG_Beta", detectp = ".Detection.Pval"), groupfile, writePDF = FALSE) {
     cat("................Reading data................\n")
     temp <- readLines(fileName, n = 20)
     nskip <- grep(columnGrepPattern$beta, temp, ignore.case = TRUE) - 1
@@ -58,12 +58,14 @@ IMA2.methy450R <- function (fileName, columnGrepPattern = list(beta = ".AVG_Beta
     eset <- na.omit(betamatrix)
     samples <- paste(group[, 1], group[, 2], sep = "_")
     hc1 <- hclust(cor.dist(t(eset)), method = "average")
-    pdf("./QC.pdf", width = 24)
-        plot(hc1, samples, xlab = "Sample", main = "Clustering samples by all the CpG loci ", lwd = 2, font.axis = 2, font.lab = 2)
-        boxplot(betamatrix, ylab = "beta Value")
-        avgPval <- apply(detect_p, 2, function (x) { sum(x >= 1e-05) * 100/length(x) })
-        barplot(avgPval, ylab = "% of detect pvalue >1e-5")
-    dev.off()
+    if (writePDF) {
+        pdf("./QC.pdf", width = 24)
+            plot(hc1, samples, xlab = "Sample", main = "Clustering samples by all the CpG loci ", lwd = 2, font.axis = 2, font.lab = 2)
+            boxplot(betamatrix, ylab = "beta Value")
+            avgPval <- apply(detect_p, 2, function (x) { sum(x >= 1e-05) * 100/length(x) })
+            barplot(avgPval, ylab = "% of detect pvalue >1e-5")
+        dev.off()
+    } else {}
 
     cat("An exprmethy450 class are created and the slotNames are:\n",
     slotNames(x.methy450), "\n")
