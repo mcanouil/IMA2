@@ -223,12 +223,12 @@ IMA2.methy450PP <- function (data, na.omit = TRUE, peakcorrection = FALSE, norma
         # EXON1Ind = "list", GENEBODYInd = "list", UTR3Ind = "list",
         # ISLANDInd = "list", NSHOREInd = "list", SSHOREInd = "list",
         # NSHELFInd = "list", SSHELFInd = "list"), where = topenv(parent.frame()))
-    # x.methy450 <- new("methy450batch", bmatrix = as.matrix(bmatrix),
-        # annot = as.matrix(annotation), detectP = as.matrix(detect_p),
-        # groupinfo = groupinfo, TSS1500Ind = TSS1500Ind, TSS200Ind = TSS200Ind,
-        # UTR5Ind = UTR5Ind, EXON1Ind = EXON1Ind, GENEBODYInd = GENEBODYInd,
-        # UTR3Ind = UTR3Ind, ISLANDInd = ISLANDInd, NSHOREInd = NSHOREInd,
-        # SSHOREInd = SSHOREInd, NSHELFInd = NSHELFInd, SSHELFInd = SSHELFInd)
+    x.methy450 <- new("methy450batch", bmatrix = as.matrix(bmatrix),
+        annot = as.matrix(annotation), detectP = as.matrix(detect_p),
+        groupinfo = groupinfo, TSS1500Ind = TSS1500Ind, TSS200Ind = TSS200Ind,
+        UTR5Ind = UTR5Ind, EXON1Ind = EXON1Ind, GENEBODYInd = GENEBODYInd,
+        UTR3Ind = UTR3Ind, ISLANDInd = ISLANDInd, NSHOREInd = NSHOREInd,
+        SSHOREInd = SSHOREInd, NSHELFInd = NSHELFInd, SSHELFInd = SSHELFInd)
     cat("\nA methy450batch class is created and the slotNames are:\n", slotNames(x.methy450), "\n")
 
     # setMethod("show", "methy450batch",

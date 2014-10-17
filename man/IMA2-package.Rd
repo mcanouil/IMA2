@@ -2,6 +2,10 @@
 \alias{IMA2-package}
 \alias{IMA2}
 \alias{IMA2-class}
+\alias{methy450batch-class}
+\alias{show,methy450batch-method}
+\alias{exprmethy450-class}
+\alias{show,exprmethy450-method}
 \docType{package}
 \title{IMA2 (Illumina Methylation Analyzer 2)}
 \description{
