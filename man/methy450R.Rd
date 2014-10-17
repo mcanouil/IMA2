@@ -9,7 +9,8 @@
 IMA2.methy450R(
     fileName,
     columnGrepPattern = list(beta = ".AVG_Beta", detectp = ".Detection.Pval"),
-    groupfile
+    groupfile,
+    writePDF = FALSE
 )
 }
 
@@ -17,6 +18,7 @@ IMA2.methy450R(
     \item{fileName}{This is the input file containing the 450k methylation data including beta value, detection p-value and loci annotation information. This file can be be produced from the illumina BeadStudio or GenomeStudio software.}
     \item{columnGrepPattern}{Specify the columns with corresponding characters within the 450k methylation data file produced by illumina BeadStudio or GenomeStudio software. These columns will be loaded into the function.}
     \item{groupfile}{This is the input file containing the phenotype data prepared by the users.}
+    \item{writePDF}{Print control quality summary in a PDF file.}
     % \item{...}{Arguments in read.delim(), such as parameter "sep" could be set to sep="," if the GenoneStudio file is separated by comma instead of tab.}
 }
 
@@ -26,7 +28,7 @@ A QC.pdf file including the basic quality control information will be generated.
 \item{bmatrix}{ the beta value matrix for each site in each sample}
 \item{detectP}{ a matrix of detection p-value for each site in each sample}
 \item{annot}{a matrix of annotation information for each targeted site}
-\item{groupinfo}{ a matrix of sample ID and phenotype information for each sample}
+\item{groupinfo}{a matrix of sample ID and phenotype information for each sample}
 }
 
 \author{
