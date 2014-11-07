@@ -87,7 +87,7 @@ locidiff = FALSE
 
 # Specify which two groups are considered to check the loci difference
 #(if "locidiff" is not true)
-locidiffgroup = c("g1","g2")
+locidiffgroup = c("g1", "g2")
 
 # If FALSE, keep the loci whose methylation level are measured by probes containing SNP(s) at/near
 # the targeted CpG site; otherwise, filter out the list of SNP containing loci
@@ -95,7 +95,7 @@ locidiffgroup = c("g1","g2")
 snpfilter = FALSE
 
 # A list of SNP-containing probes (based on dbSNP v132) could be accessed by the command:
-# snpfilter = system.file("extdata/snpsites.txt",package ="IMA")
+# snpfilter = system.file("extdata/snpsites.txt", package ="IMA")
 
 
 ### sitetest ###
