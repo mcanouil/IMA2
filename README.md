@@ -89,7 +89,7 @@ snpfilter = FALSE
 
 # A list of SNP-containing probes (based on dbSNP v132) could be accessed
 # by the command:
-snpfilter = system.file("extdata/snpsites.txt",package ="IMA")
+snpfilter = system.file("extdata/snpsites.txt", package ="IMA")
 ```
 
 #### 2.3. Site test
