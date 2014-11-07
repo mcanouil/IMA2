@@ -45,94 +45,94 @@ options(stringAsfactors = FALSE)
 ### options in IMA2.methy450R ###
 ## Load data ##
 # Specify the location of your R library
-libPaths = "/home/R/myR" # Specify the location of your R library
+libPaths <- "/home/R/myR" # Specify the location of your R library
 # Specfiy the original methylation data produced by the GenomeStudio
-MethyFileName = "../data/SampleMethFinalReport_Smiraglia.txt"
+MethyFileName <- "../data/SampleMethFinalReport_Smiraglia.txt"
 # Specify the phenotype for each sample
-PhenoFileName = "../data/SamplePhenotype.txt"
+PhenoFileName <- "../data/SamplePhenotype.txt"
 
 
 ### Preprocessing:IMA2.methy450PP ###
 # The cutoff for sample-level detection Pvalue
-samplefilterdetectP = 1e-5
+samplefilterdetectP <- 1e-5
 
 # The percent of loci with detection Pvalue less than "samplefilterdetectP" in each sample
-samplefilterperc = 0.75
+samplefilterperc <- 0.75
 
 # The cutoff for site-level detection Pvalue
-sitefilterdetectP = 0.05
+sitefilterdetectP <- 0.05
 
 # The percent of samples with detection Pvalue less than "sitefilterdetectP" for each site
-sitefilterperc = 0.5
+sitefilterperc <- 0.5
 
 # Remove the sites containing missing beta value
-na.omit = TRUE
+na.omit <- TRUE
 
 # Remove the sites on chromosome X
-XYchrom = FALSE
+XYchrom <- FALSE
 
 # If TRUE, peak correction is performed
-peakcorrection = FALSE
+peakcorrection <- FALSE
 
 # If TRUE, quantile normalization performed
-normalization = FALSE
+normalization <- FALSE
 
 # If FALSE, no transform is performed; if "arcsinsqr", arcsin square root
 # transformation is performed; if "logit", logit transformation is performed
-transfm = FALSE
+transfm <- FALSE
 
 # If FALSE, don't filter sites by the difference of group beta value. Otherwise,
 # remove the sites with beta value difference smaller than the specified value
-locidiff = FALSE
+locidiff <- FALSE
 
 # Specify which two groups are considered to check the loci difference
 #(if "locidiff" is not true)
-locidiffgroup = c("g1", "g2")
+locidiffgroup <- c("g1", "g2")
 
 # If FALSE, keep the loci whose methylation level are measured by probes containing SNP(s) at/near
 # the targeted CpG site; otherwise, filter out the list of SNP containing loci
 # by specifying the snp file name and location
-snpfilter = FALSE
+snpfilter <- FALSE
 
 # A list of SNP-containing probes (based on dbSNP v132) could be accessed by the command:
-# snpfilter = system.file("extdata/snpsites.txt", package ="IMA")
+# snpfilter <- system.file("extdata/snpsites.txt", package = "IMA")
 
 
 ### sitetest ###
 # Other options of differential testing methods:
 #"wilcox"/"pooled"/"satterthwaite" for the comparison between two group
-testmethod = "limma"
+testmethod <- "limma"
 
 # If "ON", covariates is continuous variable
-concov = "OFF"
+concov <- "OFF"
 
 # Specify the case group index in the sample.txt file (if "concov" is "ON")
-gcase = "g2"
+gcase <- "g2"
 
 # Specify the control group index in the sample.txt file (if "concov" is "ON")
-gcontrol = "g1"
+gcontrol <- "g1"
 
 # Options for multiple testing correction.
 #The user can choose the methods provided by p.adjust function of R stat package
-Padj = "BH"
+Padj <- "BH"
 
 # Options for deriving an index of overall methylation value of each region.
 #mean/median/tbrm: "tbrm" is Tukey's Biweight robust average
-indexmethod = "mean"
+indexmethod <- "mean"
 
 # If ture, the differential test methods would change to the corresponding paired-test methods
-paired = FALSE
+paired <- FALSE
 
 
 ### output the differential sites ###
 # cut off for raw pvalue
-rawpcut = NULL
+rawpcut <- NULL
 
 # cut off for adjusted pvalue
-adjustpcut = NULL
+adjustpcut <- NULL
 
 # cut off for beta value difference
-betadiffcut = NULL
+betadiffcut <- NULL
 
 
 ### Analysis Routes ###
