@@ -1,7 +1,7 @@
 IMA2 (Illumina Methylation Analyzer 2)
 ======================================
 
-*IMA2 is based on IMA package (3.1.2).*
+*IMA2 is based on IMA package (3.1.2) at [http://rforge.net/IMA/](http://rforge.net/IMA/).*
 
 >**Aurhors:**
 >Wang D, Yan L, Hu Q, Sucheston LE, Higgins MJ, Ambrosone CB, Johnson CS, Smiraglia DJ, Liu S.
