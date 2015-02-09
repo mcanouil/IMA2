@@ -6,6 +6,7 @@
 \alias{show,methy450batch-method}
 \alias{exprmethy450-class}
 \alias{show,exprmethy450-method}
+\alias{BMIQ}
 \docType{package}
 \title{IMA2 (Illumina Methylation Analyzer 2)}
 \description{
