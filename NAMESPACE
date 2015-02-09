@@ -9,5 +9,5 @@ importFrom(utils, read.delim)
 
 exportClasses("exprmethy450", "methy450batch")
 exportMethods("show")
-export(IMA2.methy450PP, IMA2.methy450R, IMA2.sitetest)
+export(IMA2.methy450PP, IMA2.methy450R, IMA2.sitetest, BMIQ)
 
