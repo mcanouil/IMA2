@@ -50,7 +50,7 @@
 # SH used method = "Nelder-Mead" in optim() since the other #optimization method sometimes gets stuck.
 #Toward this end, the function blc was replaced by blc2.
 
-require(RPMM)
+# require(RPMM)
 betaEst2 <- function (y, w, weights) {
     yobs = !is.na(y)
     if (sum(yobs) <= 1) {
