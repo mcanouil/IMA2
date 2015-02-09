@@ -31,9 +31,6 @@ library(IMA2)
 ### 2. Options
 #### 2.1. Read data
 ```r
-# Specify the location of your R library
-libPaths <- "/home/R/myR" # Specify the location of your R library
-
 # Specfiy the original methylation data produced by the GenomeStudio
 MethyFileName <- "../data/SampleMethFinalReport_Smiraglia.txt"
 
