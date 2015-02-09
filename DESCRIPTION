@@ -11,7 +11,7 @@ Authors@R: c(
     person("Qiang", "Hu", role = "aut"),
     person("Dominic", "J Smiraglia", role = "aut"),
     person("Song", "J Liu", role = "aut"),
-    person("Mickael", "Canouil", role = c("cre", "ctb"), email = "mickael.canouil@good.ibl.fr"))
+    person("Mickael", "Canouil", role = c("cre", "ctb"), email = "mickael.canouil@cnrs.fr"))
 Description: IMA2 (Illumina Methylation Analyzer 2) is a package designed to automate the pipeline for exploratory analysis and summarization of site-level and region-level methylation changes in epigenetic studies utilizing the 450K DNA methylation microarray.
 License: GPL (>= 2)
 LazyLoad: yes
