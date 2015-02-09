@@ -6,6 +6,7 @@ import(methods)
 importFrom(preprocessCore, normalize.quantiles)
 importFrom(stats, C, hclust, lm, model.matrix, na.omit, p.adjust, t.test, wilcox.test)
 importFrom(utils, read.delim)
+importFrom(RPMM, betaObjf)
 
 exportClasses("exprmethy450", "methy450batch")
 exportMethods("show")
