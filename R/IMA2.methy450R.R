@@ -1,5 +1,4 @@
-IMA2.methy450R <- function (fileName, columnGrepPattern = list(beta = ".AVG_Beta", detectp = ".Detection.Pval"), groupfile, writePDF = FALSE) {
-    cat("................Reading data................\n")
+IMA2.methy450R <- function (fileName, columnGrepPattern = list(beta = ".AVG_Beta", detectp = ".Detection.Pval"), groupfile, writePDF = FALSE, ...) {    cat("................Reading data................\n")
     temp <- readLines(fileName, n = 20)
     nskip <- grep(columnGrepPattern$beta, temp, ignore.case = TRUE) - 1
     titleLine <- temp[nskip + 1]
@@ -19,7 +18,7 @@ IMA2.methy450R <- function (fileName, columnGrepPattern = list(beta = ".AVG_Beta
     colClasses[annotcol] <- "character"
 
     dataRead <- read.delim(file = fileName, header = TRUE, skip = nskip, colClasses = colClasses, sep = "\t",
-                            na.string = c("NA", ""), check.names = FALSE, strip.white = TRUE, row.names = TargetID)
+                            na.string = c("NA", ""), check.names = FALSE, strip.white = TRUE, row.names = TargetID, ...)
     dataName <- colnames(dataRead)
     cat("......Extracting the beta value matrix......\n")
     betaCol <- grep(columnGrepPattern$beta, dataName)
