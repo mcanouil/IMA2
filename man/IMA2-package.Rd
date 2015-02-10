@@ -24,7 +24,7 @@ The main purpose of developing IMA2 package is to provide a range of commonly us
     Title: \tab IMA2 (Illumina Methylation Analyzer 2)\cr
     Author: \tab Dan Wang, Li Yang, Qiang Hu, Dominic J Smiraglia, Song Liu\cr
     Contributor: \tab Mickaël Canouil\cr
-    Maintainer: \tab Mickael Canouil <mickael.canouil at good.ibl.fr>\cr
+    Maintainer: \tab Mickael Canouil\cr
     License: \tab GPL (>= 2)\cr
     Depends: \tab R (>= 3.0.0), methods, parallel, bioDist, graphics, grDevices, limma, preprocessCore, stats, utils\cr
     URL: \tab https://github.com/mcanouil/snpEnrichment\cr
