@@ -10,7 +10,8 @@ IMA2.methy450R(
     fileName,
     columnGrepPattern = list(beta = ".AVG_Beta", detectp = ".Detection.Pval"),
     groupfile,
-    writePDF = FALSE
+    writePDF = FALSE,
+    ...
 )
 }
 
@@ -19,7 +20,7 @@ IMA2.methy450R(
     \item{columnGrepPattern}{Specify the columns with corresponding characters within the 450k methylation data file produced by illumina BeadStudio or GenomeStudio software. These columns will be loaded into the function.}
     \item{groupfile}{This is the input file containing the phenotype data prepared by the users.}
     \item{writePDF}{Print control quality summary in a PDF file.}
-    % \item{...}{Arguments in read.delim(), such as parameter "sep" could be set to sep="," if the GenoneStudio file is separated by comma instead of tab.}
+    \item{...}{Arguments in read.delim(), such as parameter "sep" could be set to sep="," if the GenoneStudio file is separated by comma instead of tab.}
 }
 
 \value{
