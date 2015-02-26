@@ -57,9 +57,9 @@ IMA2.methy450PP <- function (data, na.omit = TRUE, peakcorrection = FALSE, norma
         bmatrix <- bmatrix[, goodsample]
         detect_p <- detect_p[, goodsample]
         goodsample_names <- colnames(bmatrix)
-        cat(abs(ncol(bmatrix) - length(goodsample)), "samples removed with at least",
-            samplefilterperc * 100, "percentage sites having pvalue greater than",
-            samplefilterdetectP, ".\n")
+        cat(abs(ncol(bmatrix) - length(goodsample)), " samples removed with at least ",
+            samplefilterperc * 100, " percentage sites having pvalue greater than ",
+            samplefilterdetectP, ".\n", sep = "")
         tmp <- setdiff(sample_names, goodsample_names)
         if (length(tmp)!=0) {
             cat(paste0(tmp, collapse = ", "), "is/are removed.\n")
@@ -72,7 +72,7 @@ IMA2.methy450PP <- function (data, na.omit = TRUE, peakcorrection = FALSE, norma
         detect_p <- detect_p[temp, ]
         annotation <- annotation[temp, ]
         temp <- nrow(data@bmatrix) - nrow(bmatrix)
-        cat(temp, "sites contain missing value and are removed", ".\n")
+        cat(temp, "sites contain missing value and are removed.\n")
     }
     if (snpfilter != FALSE) {
         snpsites <- read.delim(snpfilter, sep = "\t", stringsAsFactors = FALSE)[, "TargetID"]
