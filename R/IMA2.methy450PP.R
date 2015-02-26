@@ -57,9 +57,9 @@ IMA2.methy450PP <- function (data, na.omit = TRUE, peakcorrection = FALSE, norma
         bmatrix <- bmatrix[, goodsample]
         detect_p <- detect_p[, goodsample]
         goodsample_names <- colnames(bmatrix)
-        cat(ncol(bmatrix) - length(goodsample), "samples removed with at least",
+        cat(abs(ncol(bmatrix) - length(goodsample)), "samples removed with at least",
             samplefilterperc * 100, "percentage sites having pvalue greater than",
-            samplefilterdetectP, "\n")
+            samplefilterdetectP, ".\n")
         tmp <- setdiff(sample_names, goodsample_names)
         if (length(tmp)!=0) {
             cat(paste0(tmp, collapse = ", "), "is/are removed.\n")
@@ -72,7 +72,7 @@ IMA2.methy450PP <- function (data, na.omit = TRUE, peakcorrection = FALSE, norma
         detect_p <- detect_p[temp, ]
         annotation <- annotation[temp, ]
         temp <- nrow(data@bmatrix) - nrow(bmatrix)
-        cat(temp, "sites contain missing value and are removed", "\n")
+        cat(temp, "sites contain missing value and are removed", ".\n")
     }
     if (snpfilter != FALSE) {
         snpsites <- read.delim(snpfilter, sep = "\t", stringsAsFactors = FALSE)[, "TargetID"]
@@ -86,7 +86,7 @@ IMA2.methy450PP <- function (data, na.omit = TRUE, peakcorrection = FALSE, norma
         chr <- annotation[, "CHR"]
         index <- which(chr %in% XYchrom)
         good_chrom <- rownames(annotation)[-index]
-        cat(length(index), "sites on chr", XYchrom, "are removed\n")
+        cat(length(index), "sites on chr", XYchrom, "are removed.\n")
     } else {
         good_chrom <- rownames(bmatrix)
     }
@@ -94,7 +94,7 @@ IMA2.methy450PP <- function (data, na.omit = TRUE, peakcorrection = FALSE, norma
         good_loci <- rownames(detect_p)[rowSums(detect_p <= sitefilterdetectP) >= sitefilterperc * ncol(detect_p)]
         cat(nrow(detect_p) - length(good_loci), "sites had at least",
             sitefilterperc * 100, "% samples with pvalue greater than",
-            sitefilterdetectP, "and are removed\n")
+            sitefilterdetectP, "and are removed.\n")
     } else {
         good_loci <- rownames(bmatrix)
     }
@@ -110,7 +110,7 @@ IMA2.methy450PP <- function (data, na.omit = TRUE, peakcorrection = FALSE, norma
         good_diff <- rownames(bmatrix)
     }
     all_good <- intersect(intersect(good_chrom, good_loci), good_diff)
-    cat(length(all_good), "sites were retained from the original", length(orignalrownm), "sites\n")
+    cat(length(all_good), "sites were retained from the original", length(orignalrownm), "sites.\n")
     bmatrix <- bmatrix[all_good, ]
     annotation <- annotation[all_good, ]
     detect_p <- detect_p[all_good, ]
