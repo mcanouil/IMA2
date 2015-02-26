@@ -75,7 +75,7 @@ transfm <- FALSE
 locidiff <- FALSE
 
 # Specify which two groups are considered to check the loci difference
-#(if "locidiff" is not true)
+# (if "locidiff" is not true)
 locidiffgroup <- c("g1", "g2")
 
 # If FALSE, keep the loci whose methylation level are measured by probes

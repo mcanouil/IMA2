@@ -1,4 +1,5 @@
-IMA2.methy450R <- function (fileName, columnGrepPattern = list(beta = ".AVG_Beta", detectp = ".Detection.Pval"), groupfile, writePDF = FALSE, ...) {    cat("................Reading data................\n")
+IMA2.methy450R <- function (fileName, columnGrepPattern = list(beta = ".AVG_Beta", detectp = ".Detection.Pval"), groupfile, writePDF = FALSE, ...) {
+    cat("................Reading data................\n")
     temp <- readLines(fileName, n = 20)
     nskip <- grep(columnGrepPattern$beta, temp, ignore.case = TRUE) - 1
     titleLine <- temp[nskip + 1]
