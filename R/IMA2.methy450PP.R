@@ -58,7 +58,7 @@ IMA2.methy450PP <- function (data, na.omit = TRUE, peakcorrection = FALSE, norma
         detect_p <- detect_p[, goodsample]
         goodsample_names <- colnames(bmatrix)
         cat(abs(ncol(bmatrix) - length(goodsample)), " samples removed with at least ",
-            samplefilterperc * 100, " percentage sites having pvalue greater than ",
+            (1-samplefilterperc) * 100, " % sites having pvalue greater than ",
             samplefilterdetectP, ".\n", sep = "")
         tmp <- setdiff(sample_names, goodsample_names)
         if (length(tmp)!=0) {
@@ -93,7 +93,7 @@ IMA2.methy450PP <- function (data, na.omit = TRUE, peakcorrection = FALSE, norma
     if (sitefilterdetectP) {
         good_loci <- rownames(detect_p)[rowSums(detect_p <= sitefilterdetectP) >= sitefilterperc * ncol(detect_p)]
         cat(nrow(detect_p) - length(good_loci), "sites had at least",
-            sitefilterperc * 100, "% samples with pvalue greater than",
+            (1-sitefilterperc) * 100, "% samples with pvalue greater than",
             sitefilterdetectP, "and are removed.\n")
     } else {
         good_loci <- rownames(bmatrix)
