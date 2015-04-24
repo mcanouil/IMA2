@@ -4,7 +4,12 @@ language: r
 warnings_are_errors: true
 sudo: required
 
+bioc_packages:
+    - bioDist
+    - limma
+    - preprocessCore
+
 notifications:
-  email:
-    on_success: change
-    on_failure: change
+    email:
+        on_success: change
+        on_failure: change
