@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Ima2 by mcanouil</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Ima2</h1>
+        <h2>Illumina Methylation Analyzer 2 for ILLUMINA 450k HumanMethylation Beadchip</h2>
+        <a href="https://github.com/mcanouil/IMA2" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="ima2-illumina-methylation-analyzer-2" class="anchor" href="#ima2-illumina-methylation-analyzer-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>IMA2 (Illumina Methylation Analyzer 2)</h1>
+
+<p><a href="https://travis-ci.org/mcanouil/IMA2"><img src="https://travis-ci.org/mcanouil/IMA2.svg?branch=master" alt="Build Status"></a></p>
+
+<p><em>IMA2 is based on IMA package (3.1.2) at <a href="http://rforge.net/IMA/">http://rforge.net/IMA/</a>.</em></p>
+
+<blockquote>
+<p><strong>Aurhors:</strong>
+Wang D, Yan L, Hu Q, Sucheston LE, Higgins MJ, Ambrosone CB, Johnson CS, Smiraglia DJ, Liu S.
+<em>IMA: an R package for high-throughput analysis of Illumina's 450K Infinium methylation data.</em>
+Bioinformatics. 2012 Mar 1;28(5):729-30</p>
+</blockquote>
+
+<p>IMA2 is a package designed to automate the pipeline for exploratory analysis and summarization of site-level and region-level methylation changes in epigenetic studies utilizing the 450K DNA methylation microarray
+IMA2 automates the tasks commonly required for the exploratory analysis and summarization of epigenetic data sets utilizing the 450K DNA methylation microarray. The package makes use of Illumina methylation annotation for region definition, as well as several Bioconductor packages for various preprocessing and differential testing steps. There are two major differences between IMA2 and existing packages for Infinium methylation microarray analysis. First, instead of analyzing CpG site only, IMA2 provide both site-level and region-level methylation analysis. Second, instead of manually calling individual R functions at the command line, IMA2 provides a pipeline which automate the tasks commonly required for the exploratory analysis and summarization of 450K microarray data. The user can either run the pipeline with default setting or specify optional routes in the parameter file of pipeline.</p>
+
+<p>The main purpose of developing IMA2 package is to provide a range of commonly used analysis options for potential users to perform exploratory analysis and summarization of 450K microarray data in an automatic way. It is the best interest for the users to consult experienced bioinformatician/statistician about which specific analysis option should be chosen for their 450k microarray data. Written in open source R environment, it provides the flexibility for users to adopt, extend and customize the functionality for their specific needs. It can be used as an automatic pipeline to analyze specific regions as well as specific sites for downstream functional exploration and hypothesis generation.</p>
+
+<h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<h3>
+<a id="1-install-and-load-ima2" class="anchor" href="#1-install-and-load-ima2" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Install and load IMA2</h3>
+
+<p>To install the latest development builds directly from GitHub, run this instead:</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-k">if</span> (<span class="pl-k">!</span>require(<span class="pl-s"><span class="pl-pds">"</span>devtools<span class="pl-pds">"</span></span>)) { install.packages(<span class="pl-s"><span class="pl-pds">"</span>devtools<span class="pl-pds">"</span></span>) } <span class="pl-k">else</span> {}
+<span class="pl-e">devtools</span><span class="pl-k">::</span>install_github(<span class="pl-s"><span class="pl-pds">"</span>mcanouil/IMA2<span class="pl-pds">"</span></span>)</pre></div>
+
+<p>Load <strong>IMA2</strong>: <strong><em>(Not on CRAN yet)</em></strong></p>
+
+<div class="highlight highlight-r"><pre>library(<span class="pl-smi">IMA2</span>)</pre></div>
+
+<h3>
+<a id="2-options" class="anchor" href="#2-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Options</h3>
+
+<h4>
+<a id="21-read-data" class="anchor" href="#21-read-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.1. Read data</h4>
+
+<div class="highlight highlight-r"><pre><span class="pl-c"># Specfiy the original methylation data produced by the GenomeStudio</span>
+<span class="pl-smi">MethyFileName</span> <span class="pl-k">&lt;-</span> <span class="pl-s"><span class="pl-pds">"</span>../data/SampleMethFinalReport_Smiraglia.txt<span class="pl-pds">"</span></span>
+
+<span class="pl-c"># Specify the phenotype for each sample</span>
+<span class="pl-smi">PhenoFileName</span> <span class="pl-k">&lt;-</span> <span class="pl-s"><span class="pl-pds">"</span>../data/SamplePhenotype.txt<span class="pl-pds">"</span></span></pre></div>
+
+<h4>
+<a id="22-preprocessing" class="anchor" href="#22-preprocessing" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2. Preprocessing</h4>
+
+<div class="highlight highlight-r"><pre><span class="pl-c"># The cutoff for sample-level detection Pvalue</span>
+<span class="pl-smi">samplefilterdetectP</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">1e-5</span>
+
+<span class="pl-c"># The percent of loci with detection Pvalue less than "samplefilterdetectP"</span>
+<span class="pl-c"># in each sample</span>
+<span class="pl-smi">samplefilterperc</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">0.75</span>
+
+<span class="pl-c"># The cutoff for site-level detection Pvalue</span>
+<span class="pl-smi">sitefilterdetectP</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">0.05</span>
+
+<span class="pl-c"># The percent of samples with detection Pvalue less than "sitefilterdetectP"</span>
+<span class="pl-c"># for each site</span>
+<span class="pl-smi">sitefilterperc</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">0.5</span>
+
+<span class="pl-c"># Remove the sites containing missing beta value</span>
+<span class="pl-smi">na.omit</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">TRUE</span>
+
+<span class="pl-c"># Remove the sites on chromosome X</span>
+<span class="pl-smi">XYchrom</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">FALSE</span>
+
+<span class="pl-c"># If TRUE, peak correction is performed</span>
+<span class="pl-smi">peakcorrection</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">FALSE</span>
+
+<span class="pl-c"># If TRUE, quantile normalization performed</span>
+<span class="pl-smi">normalization</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">FALSE</span>
+
+<span class="pl-c"># If FALSE, no transform is performed; if "arcsinsqr", arcsin square root</span>
+<span class="pl-c"># transformation is performed; if "logit", logit transformation is performed</span>
+<span class="pl-smi">transfm</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">FALSE</span>
+
+<span class="pl-c"># If FALSE, don't filter sites by the difference of group beta value. Otherwise,</span>
+<span class="pl-c"># remove the sites with beta value difference smaller than the specified value</span>
+<span class="pl-smi">locidiff</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">FALSE</span>
+
+<span class="pl-c"># Specify which two groups are considered to check the loci difference</span>
+<span class="pl-c"># (if "locidiff" is not true)</span>
+<span class="pl-smi">locidiffgroup</span> <span class="pl-k">&lt;-</span> c(<span class="pl-s"><span class="pl-pds">"</span>g1<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>g2<span class="pl-pds">"</span></span>)
+
+<span class="pl-c"># If FALSE, keep the loci whose methylation level are measured by probes</span>
+<span class="pl-c"># containing SNP(s) at/near the targeted CpG site; otherwise,</span>
+<span class="pl-c"># filter out the list of SNP containing loci</span>
+<span class="pl-c"># by specifying the snp file name and location</span>
+<span class="pl-smi">snpfilter</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">FALSE</span>
+
+<span class="pl-c"># A list of SNP-containing probes (based on dbSNP v132) could be accessed</span>
+<span class="pl-c"># by the command:</span>
+<span class="pl-smi">snpfilter</span> <span class="pl-k">&lt;-</span> system.file(<span class="pl-s"><span class="pl-pds">"</span>extdata/snpsites.txt<span class="pl-pds">"</span></span>, <span class="pl-v">package</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>IMA<span class="pl-pds">"</span></span>)</pre></div>
+
+<h4>
+<a id="23-site-test" class="anchor" href="#23-site-test" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.3. Site test</h4>
+
+<div class="highlight highlight-r"><pre><span class="pl-c"># Other options of differential testing methods:</span>
+<span class="pl-c">#"wilcox"/"pooled"/"satterthwaite" for the comparison between two group</span>
+<span class="pl-smi">testmethod</span> <span class="pl-k">&lt;-</span> <span class="pl-s"><span class="pl-pds">"</span>limma<span class="pl-pds">"</span></span>
+
+<span class="pl-c"># If "ON", covariates is continuous variable</span>
+<span class="pl-smi">concov</span> <span class="pl-k">&lt;-</span> <span class="pl-s"><span class="pl-pds">"</span>OFF<span class="pl-pds">"</span></span>
+
+<span class="pl-c"># Specify the case group index in the sample.txt file (if "concov" is "ON")</span>
+<span class="pl-smi">gcase</span> <span class="pl-k">&lt;-</span> <span class="pl-s"><span class="pl-pds">"</span>g2<span class="pl-pds">"</span></span>
+
+<span class="pl-c"># Specify the control group index in the sample.txt file (if "concov" is "ON")</span>
+<span class="pl-smi">gcontrol</span> <span class="pl-k">&lt;-</span> <span class="pl-s"><span class="pl-pds">"</span>g1<span class="pl-pds">"</span></span>
+
+<span class="pl-c"># Options for multiple testing correction.</span>
+<span class="pl-c">#The user can choose the methods provided by p.adjust function of R stat package</span>
+<span class="pl-smi">Padj</span> <span class="pl-k">&lt;-</span> <span class="pl-s"><span class="pl-pds">"</span>BH<span class="pl-pds">"</span></span>
+
+<span class="pl-c"># Options for deriving an index of overall methylation value of each region.</span>
+<span class="pl-c">#mean/median/tbrm: "tbrm" is Tukey's Biweight robust average</span>
+<span class="pl-smi">indexmethod</span> <span class="pl-k">&lt;-</span> <span class="pl-s"><span class="pl-pds">"</span>mean<span class="pl-pds">"</span></span>
+
+<span class="pl-c"># If true, the differential test methods would change to the</span>
+<span class="pl-c"># corresponding paired-test methods</span>
+<span class="pl-smi">paired</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">FALSE</span></pre></div>
+
+<h4>
+<a id="24-output-the-differential-sites" class="anchor" href="#24-output-the-differential-sites" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.4. Output the differential sites.</h4>
+
+<div class="highlight highlight-r"><pre><span class="pl-c"># cut off for raw pvalue</span>
+<span class="pl-smi">rawpcut</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">NULL</span>
+
+<span class="pl-c"># cut off for adjusted pvalue</span>
+<span class="pl-smi">adjustpcut</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">NULL</span>
+
+<span class="pl-c"># cut off for beta value difference</span>
+<span class="pl-smi">betadiffcut</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">NULL</span></pre></div>
+
+<h3>
+<a id="3-analysis" class="anchor" href="#3-analysis" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Analysis</h3>
+
+<div class="highlight highlight-r"><pre><span class="pl-c"># load the data</span>
+<span class="pl-smi">data</span> <span class="pl-k">&lt;-</span> IMA2.methy450R(
+    <span class="pl-v">fileName</span> <span class="pl-k">=</span> <span class="pl-smi">MethyFileName</span>,
+    <span class="pl-v">columnGrepPattern</span> <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-v">beta</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>.AVG_Beta<span class="pl-pds">"</span></span>, <span class="pl-v">detectp</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>.Detection.Pval<span class="pl-pds">"</span></span>),
+    <span class="pl-v">groupfile</span> <span class="pl-k">=</span> <span class="pl-smi">PhenoFileName</span>
+)
+
+<span class="pl-c"># QC filtering</span>
+<span class="pl-smi">dataf</span> <span class="pl-k">&lt;-</span> IMA2.methy450PP(
+    <span class="pl-smi">data</span>,
+    <span class="pl-v">na.omit</span> <span class="pl-k">=</span> <span class="pl-smi">na.omit</span>,
+    <span class="pl-v">normalization</span> <span class="pl-k">=</span> <span class="pl-smi">normalization</span>,
+    <span class="pl-v">peakcorrection</span> <span class="pl-k">=</span> <span class="pl-smi">peakcorrection</span>,
+    <span class="pl-v">transfm</span> <span class="pl-k">=</span> <span class="pl-smi">transfm</span>,
+    <span class="pl-v">samplefilterdetectP</span> <span class="pl-k">=</span> <span class="pl-smi">samplefilterdetectP</span>,
+    <span class="pl-v">samplefilterperc</span> <span class="pl-k">=</span> <span class="pl-smi">samplefilterperc</span>,
+    <span class="pl-v">sitefilterdetectP</span> <span class="pl-k">=</span> <span class="pl-smi">sitefilterdetectP</span>,
+    <span class="pl-v">locidiff</span> <span class="pl-k">=</span> <span class="pl-smi">locidiff</span>,
+    <span class="pl-v">locidiffgroup</span> <span class="pl-k">=</span> <span class="pl-smi">locidiffgroup</span>,
+    <span class="pl-v">XYchrom</span> <span class="pl-k">=</span> <span class="pl-smi">XYchrom</span>,
+    <span class="pl-v">snpfilter</span> <span class="pl-k">=</span> <span class="pl-smi">snpfilter</span>
+)
+
+<span class="pl-c"># site-level testing with the "BH" adjustment</span>
+<span class="pl-smi">sitetest</span> <span class="pl-k">&lt;-</span> IMA2.sitetest(
+    <span class="pl-smi">dataf</span>,
+    <span class="pl-v">gcase</span> <span class="pl-k">=</span> <span class="pl-smi">gcase</span>,
+    <span class="pl-v">gcontrol</span> <span class="pl-k">=</span> <span class="pl-smi">gcontrol</span>,
+    <span class="pl-v">concov</span> <span class="pl-k">=</span> <span class="pl-smi">concov</span>,
+    <span class="pl-v">testmethod</span> <span class="pl-k">=</span> <span class="pl-smi">testmethod</span>,
+    <span class="pl-v">Padj</span> <span class="pl-k">=</span> <span class="pl-smi">Padj</span>,
+    <span class="pl-v">rawpcut</span> <span class="pl-k">=</span> <span class="pl-smi">rawpcut</span>,
+    <span class="pl-v">adjustpcut</span> <span class="pl-k">=</span> <span class="pl-smi">adjustpcut</span>,
+    <span class="pl-v">betadiffcut</span> <span class="pl-k">=</span> <span class="pl-smi">betadiffcut</span>,
+    <span class="pl-v">paired</span> <span class="pl-k">=</span> <span class="pl-smi">paired</span>
+)</pre></div>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/mcanouil/IMA2/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/mcanouil/IMA2/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/mcanouil/IMA2"></a> is maintained by <a href="https://github.com/mcanouil">mcanouil</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
