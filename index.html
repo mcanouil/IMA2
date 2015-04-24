@@ -47,11 +47,11 @@ IMA2 automates the tasks commonly required for the exploratory analysis and summ
 
 <p>The main purpose of developing IMA2 package is to provide a range of commonly used analysis options for potential users to perform exploratory analysis and summarization of 450K microarray data in an automatic way. It is the best interest for the users to consult experienced bioinformatician/statistician about which specific analysis option should be chosen for their 450k microarray data. Written in open source R environment, it provides the flexibility for users to adopt, extend and customize the functionality for their specific needs. It can be used as an automatic pipeline to analyze specific regions as well as specific sites for downstream functional exploration and hypothesis generation.</p>
 
-<h2>
-<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
+<h1>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h1>
 
-<h3>
-<a id="1-install-and-load-ima2" class="anchor" href="#1-install-and-load-ima2" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Install and load IMA2</h3>
+<h2>
+<a id="1-install-and-load-ima2" class="anchor" href="#1-install-and-load-ima2" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Install and load IMA2</h2>
 
 <p>To install the latest development builds directly from GitHub, run this instead:</p>
 
@@ -62,11 +62,11 @@ IMA2 automates the tasks commonly required for the exploratory analysis and summ
 
 <div class="highlight highlight-r"><pre>library(<span class="pl-smi">IMA2</span>)</pre></div>
 
-<h3>
-<a id="2-options" class="anchor" href="#2-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Options</h3>
+<h2>
+<a id="2-options" class="anchor" href="#2-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Options</h2>
 
-<h4>
-<a id="21-read-data" class="anchor" href="#21-read-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.1. Read data</h4>
+<h3>
+<a id="21-read-data" class="anchor" href="#21-read-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.1. Read data</h3>
 
 <div class="highlight highlight-r"><pre><span class="pl-c"># Specfiy the original methylation data produced by the GenomeStudio</span>
 <span class="pl-smi">MethyFileName</span> <span class="pl-k">&lt;-</span> <span class="pl-s"><span class="pl-pds">"</span>../data/SampleMethFinalReport_Smiraglia.txt<span class="pl-pds">"</span></span>
@@ -74,8 +74,8 @@ IMA2 automates the tasks commonly required for the exploratory analysis and summ
 <span class="pl-c"># Specify the phenotype for each sample</span>
 <span class="pl-smi">PhenoFileName</span> <span class="pl-k">&lt;-</span> <span class="pl-s"><span class="pl-pds">"</span>../data/SamplePhenotype.txt<span class="pl-pds">"</span></span></pre></div>
 
-<h4>
-<a id="22-preprocessing" class="anchor" href="#22-preprocessing" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2. Preprocessing</h4>
+<h3>
+<a id="22-preprocessing" class="anchor" href="#22-preprocessing" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2. Preprocessing</h3>
 
 <div class="highlight highlight-r"><pre><span class="pl-c"># The cutoff for sample-level detection Pvalue</span>
 <span class="pl-smi">samplefilterdetectP</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">1e-5</span>
@@ -125,8 +125,8 @@ IMA2 automates the tasks commonly required for the exploratory analysis and summ
 <span class="pl-c"># by the command:</span>
 <span class="pl-smi">snpfilter</span> <span class="pl-k">&lt;-</span> system.file(<span class="pl-s"><span class="pl-pds">"</span>extdata/snpsites.txt<span class="pl-pds">"</span></span>, <span class="pl-v">package</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>IMA<span class="pl-pds">"</span></span>)</pre></div>
 
-<h4>
-<a id="23-site-test" class="anchor" href="#23-site-test" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.3. Site test</h4>
+<h3>
+<a id="23-site-test" class="anchor" href="#23-site-test" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.3. Site test</h3>
 
 <div class="highlight highlight-r"><pre><span class="pl-c"># Other options of differential testing methods:</span>
 <span class="pl-c">#"wilcox"/"pooled"/"satterthwaite" for the comparison between two group</span>
@@ -153,8 +153,8 @@ IMA2 automates the tasks commonly required for the exploratory analysis and summ
 <span class="pl-c"># corresponding paired-test methods</span>
 <span class="pl-smi">paired</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">FALSE</span></pre></div>
 
-<h4>
-<a id="24-output-the-differential-sites" class="anchor" href="#24-output-the-differential-sites" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.4. Output the differential sites.</h4>
+<h3>
+<a id="24-output-the-differential-sites" class="anchor" href="#24-output-the-differential-sites" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.4. Output the differential sites.</h3>
 
 <div class="highlight highlight-r"><pre><span class="pl-c"># cut off for raw pvalue</span>
 <span class="pl-smi">rawpcut</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">NULL</span>
@@ -165,8 +165,8 @@ IMA2 automates the tasks commonly required for the exploratory analysis and summ
 <span class="pl-c"># cut off for beta value difference</span>
 <span class="pl-smi">betadiffcut</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">NULL</span></pre></div>
 
-<h3>
-<a id="3-analysis" class="anchor" href="#3-analysis" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Analysis</h3>
+<h2>
+<a id="3-analysis" class="anchor" href="#3-analysis" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Analysis</h2>
 
 <div class="highlight highlight-r"><pre><span class="pl-c"># load the data</span>
 <span class="pl-smi">data</span> <span class="pl-k">&lt;-</span> IMA2.methy450R(
