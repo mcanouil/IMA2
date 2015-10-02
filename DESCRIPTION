@@ -1,9 +1,10 @@
 Package: IMA2
 Type: Package
 Title: IMA2 (Illumina Methylation Analyzer 2)
-Version: 1.0.7
-Date: 2015-04-30
-Depends: R (>= 3.0.0), methods, parallel, bioDist, graphics, grDevices, limma, preprocessCore, stats, utils, RPMM
+Version: 1.0.8
+Date: 2015-10-01
+Depends: R (>= 3.0.0), methods
+Imports: parallel, bioDist, graphics, grDevices, limma, preprocessCore, stats, utils, RPMM
 Authors@R: c(
     person("Dan", "Wang", role = "aut"),
     person("Li", "Yan", role = "aut"),
@@ -12,7 +13,7 @@ Authors@R: c(
     person("Dominic", "J Smiraglia", role = "aut"),
     person("Song", "J Liu", role = "aut"),
     person("Mickael", "Canouil", role = c("cre", "ctb"), email = "mickael.canouil@cnrs.fr"))
-Description: IMA2 (Illumina Methylation Analyzer 2) is a package designed to automate the pipeline for exploratory analysis and summarization of site-level and region-level methylation changes in epigenetic studies utilizing the 450K DNA methylation microarray.
+Description: Illumina Methylation Analyzer 2 is a package designed to automate the pipeline for exploratory analysis and summarization of site-level and region-level methylation changes in epigenetic studies utilizing the 450K DNA methylation microarray.
 License: GPL (>= 2)
 LazyLoad: yes
 Encoding: UTF-8
