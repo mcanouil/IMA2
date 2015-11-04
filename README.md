@@ -35,10 +35,10 @@ library(IMA2)
 #### 2.1. Read data
 ```r
 # Specfiy the original methylation data produced by the GenomeStudio
-MethyFileName <- "../data/SampleMethFinalReport_Smiraglia.txt"
+MethyFileName <- system.file("extdata/SampleMethFinalReport.txt", package = "IMA2")
 
 # Specify the phenotype for each sample
-PhenoFileName <- "../data/SamplePhenotype.txt"
+PhenoFileName <- system.file("extdata/SamplePhenotype.txt", package = "IMA2")
 ```
 
 #### 2.2. Preprocessing
@@ -89,7 +89,7 @@ snpfilter <- FALSE
 
 # A list of SNP-containing probes (based on dbSNP v132) could be accessed
 # by the command:
-snpfilter <- system.file("extdata/snpsites.txt", package = "IMA")
+snpfilter <- system.file("extdata/snpsites.txt", package = "IMA2")
 ```
 
 #### 2.3. Site test

@@ -1,8 +1,8 @@
 Package: IMA2
 Type: Package
 Title: IMA2 (Illumina Methylation Analyzer 2)
-Version: 1.0.8
-Date: 2015-10-01
+Version: 1.0.9
+Date: 2015-11-04
 Depends: R (>= 3.0.0), methods
 Imports: parallel, bioDist, graphics, grDevices, limma, preprocessCore, stats, utils, RPMM
 Authors@R: c(
