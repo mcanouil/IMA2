@@ -62,8 +62,7 @@ betaEst2 <- function (y, w, weights) {
     N = sum(weights * w)
     p = sum(weights * w * y)/N
     v = sum(weights * w * y * y)/N - p * p
-    logab = log(c(p, 1 - p)) + log(pmax(1e-06, p * (1 - p)/v -
-        1))
+    logab = log(c(p, 1 - p)) + log(pmax(1e-06, p * (1 - p)/v - 1))
     if (sum(yobs) == 2) {
         return(exp(logab))
     } else {}
