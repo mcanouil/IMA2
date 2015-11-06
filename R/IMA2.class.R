@@ -25,7 +25,7 @@ setMethod("show", "methy450batch",
         nrowShow <- min(5 , nrow(object@bmatrix))
         ncolShow <- min(5 , ncol(object@bmatrix))
         if (nrow(object@bmatrix)!=0) {
-            print(formatC(object@bmatrix[1:nrowShow, 1:ncolShow]), quote = FALSE)
+            print(formatC(object@bmatrix[seq_len(nrowShow), seq_len(ncolShow)]), quote = FALSE)
         } else {}
         cat("* ..... .....\n\n")
 
@@ -33,7 +33,7 @@ setMethod("show", "methy450batch",
         nrowShow <- min(5 , nrow(object@detectP))
         ncolShow <- min(5 , ncol(object@detectP))
         if (nrow(object@detectP)!=0) {
-            print(formatC(object@detectP[1:nrowShow, 1:ncolShow]), quote = FALSE)
+            print(formatC(object@detectP[seq_len(nrowShow), seq_len(ncolShow)]), quote = FALSE)
         } else {}
         cat("* ..... .....\n\n")
 
@@ -41,7 +41,7 @@ setMethod("show", "methy450batch",
         nrowShow <- min(5 , nrow(object@annot))
         ncolShow <- min(5 , ncol(object@annot))
         if (nrow(object@annot)!=0) {
-            print(formatC(object@annot[1:nrowShow, 1:ncolShow]), quote = FALSE)
+            print(formatC(object@annot[seq_len(nrowShow), seq_len(ncolShow)]), quote = FALSE)
         } else {}
         cat("* ..... .....\n\n")
 
@@ -49,13 +49,13 @@ setMethod("show", "methy450batch",
         nrowShow <- min(5 , nrow(object@groupinfo))
         ncolShow <- min(5 , ncol(object@groupinfo))
         if (nrow(object@groupinfo)!=0) {
-            print(formatC(as.matrix(object@groupinfo[1:nrowShow, 1:ncolShow])), quote = FALSE)
+            print(formatC(as.matrix(object@groupinfo[seq_len(nrowShow), seq_len(ncolShow)])), quote = FALSE)
         } else {}
         cat("* ..... .....\n\n")
 
         Regions <- c("TSS1500", "TSS200", "5\'UTR", "1stExon", "Gene Body", "3\'UTR", "Island", "N_Shore", "S_Shore", "N_Shelf", "S_Shelf")
         regions <- c("TSS1500Ind", "TSS200Ind", "UTR5Ind", "EXON1Ind", "GENEBODYInd", "UTR3Ind", "ISLANDInd", "NSHOREInd", "SSHOREInd", "NSHELFInd", "SSHELFInd")
-        for (iReg in 1:length(regions)) {
+        for (iReg in seq_len(length(regions))) {
             cat("* Regions", Regions[iReg],"(limited to 1st element) = ", paste("(", paste(length(eval(parse(text = paste("object@", regions[iReg], sep = "")))$SID), collapse = "x"), ")", sep = ""), "\n")
             if (length(eval(parse(text = paste("object@", regions[iReg], sep = "")))[[1]])!=0) {
                 cat("$SID"); print(eval(parse(text = paste("object@", regions[iReg], sep = "")))$SID[1], quote = FALSE)
@@ -84,7 +84,7 @@ setMethod("show", "exprmethy450",
         nrowShow <- min(5 , nrow(object@bmatrix))
         ncolShow <- min(5 , ncol(object@bmatrix))
         if (nrow(object@bmatrix)!=0) {
-            print(formatC(object@bmatrix[1:nrowShow, 1:ncolShow]), quote = FALSE)
+            print(formatC(object@bmatrix[seq_len(nrowShow), seq_len(ncolShow)]), quote = FALSE)
         } else {}
         cat("* ..... .....\n\n")
 
@@ -92,7 +92,7 @@ setMethod("show", "exprmethy450",
         nrowShow <- min(5 , nrow(object@detectP))
         ncolShow <- min(5 , ncol(object@detectP))
         if (nrow(object@detectP)!=0) {
-            print(formatC(object@detectP[1:nrowShow, 1:ncolShow]), quote = FALSE)
+            print(formatC(object@detectP[seq_len(nrowShow), seq_len(ncolShow)]), quote = FALSE)
         } else {}
         cat("* ..... .....\n\n")
 
@@ -100,7 +100,7 @@ setMethod("show", "exprmethy450",
         nrowShow <- min(5 , nrow(object@annot))
         ncolShow <- min(5 , ncol(object@annot))
         if (nrow(object@annot)!=0) {
-            print(formatC(object@annot[1:nrowShow, 1:ncolShow]), quote = FALSE)
+            print(formatC(object@annot[seq_len(nrowShow), seq_len(ncolShow)]), quote = FALSE)
         } else {}
         cat("* ..... .....\n\n")
 
@@ -108,7 +108,7 @@ setMethod("show", "exprmethy450",
         nrowShow <- min(5 , nrow(object@groupinfo))
         ncolShow <- min(5 , ncol(object@groupinfo))
         if (nrow(object@groupinfo)!=0) {
-            print(formatC(as.matrix(object@groupinfo[1:nrowShow, 1:ncolShow])), quote = FALSE)
+            print(formatC(as.matrix(object@groupinfo[seq_len(nrowShow), seq_len(ncolShow)])), quote = FALSE)
         } else {}
         cat("* ..... .....\n\n")
 

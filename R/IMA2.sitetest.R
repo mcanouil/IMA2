@@ -21,7 +21,7 @@ IMA2.sitetest <- function (dataf, gcase = "g2", gcontrol = "g1", testmethod = c(
         quotient <- (nCpGs-remainder)/nCPU
         indexes <- seq(0, nCpGs, by = quotient)
         indexes[nCPU+1] <- nCpGs
-        allAssoc <- do.call("rbind", mclapply(seq(nCPU), mc.cores = nCPU, function (i) {
+        allAssoc <- do.call("rbind", mclapply(seq_len(nCPU), mc.cores = nCPU, function (i) {
             assoc(beta[(indexes[i]+1):indexes[i+1], ], pheno)
         }))
         adjustP <- p.adjust(allAssoc[, 2], method = Padj)
@@ -42,13 +42,13 @@ IMA2.sitetest <- function (dataf, gcase = "g2", gcontrol = "g1", testmethod = c(
         if (testmethod == "wilcox") {
             cat("Performing Wilcox testing...\n")
             testout <- apply(eset, 1, function (x) {
-                wilcox.test(x[1:length(lev1)], x[(length(lev1) + 1):(length(lev1) + length(lev2))], paired = paired)$p.value
+                wilcox.test(x[seq_along(lev1)], x[(length(lev1) + 1):(length(lev1) + length(lev2))], paired = paired)$p.value
             })
         } else {}
         if (testmethod == "limma") {
             cat("Performing limma...\n")
             TS <- as.factor(c(rep("T", length(lev1)), rep("C", length(lev2))))
-            SS <- rep(1:length(lev1), 2)
+            SS <- rep(seq_along(lev1), 2)
             if (paired == FALSE) {
                 design <- model.matrix(~0 + TS)
                 rownames(design) <- colnames(eset)
@@ -73,20 +73,20 @@ IMA2.sitetest <- function (dataf, gcase = "g2", gcontrol = "g1", testmethod = c(
         if (testmethod == "pooled") {
             cat("Performing pooled t.test...\n")
             testout <- apply(eset, 1, function (x) {
-                t.test(x[1:length(lev1)], x[(length(lev1) + 1):(length(lev1) + length(lev2))], var.equal = TRUE, paired = paired)$p.value
+                t.test(x[seq_along(lev1)], x[(length(lev1) + 1):(length(lev1) + length(lev2))], var.equal = TRUE, paired = paired)$p.value
             })
         }
         if (testmethod == "satterthwaite") {
             cat("Performing satterthwaite t.test...\n")
             testout <- apply(eset, 1, function (x) {
-                t.test(x[1:length(lev1)], x[(length(lev1) + 1):(length(lev1) + length(lev2))], paired = paired)$p.value
+                t.test(x[seq_along(lev1)], x[(length(lev1) + 1):(length(lev1) + length(lev2))], paired = paired)$p.value
             })
         }
         adjustP <- p.adjust(testout, method = Padj)
         difb <- apply(eset, 1, function (x) {
-            mean(x[1:length(lev1)]) - mean(x[(length(lev1) + 1):ncol(eset)])
+            mean(x[seq_along(lev1)]) - mean(x[(length(lev1) + 1):ncol(eset)])
         })
-        out <- cbind(testout, adjustP, difb, rowMeans(eset[, 1:length(lev1)]), rowMeans(eset[, (length(lev1) + 1):ncol(eset)]))
+        out <- cbind(testout, adjustP, difb, rowMeans(eset[, seq_along(lev1)]), rowMeans(eset[, (length(lev1) + 1):ncol(eset)]))
         rownames(out) <- rownames(eset)
         colnames(out) <- c("P-Value", "Adjust Pval", "Beta-Difference",
                         paste("Mean", paste(gcase, collapse = "_"), sep = "_"),
