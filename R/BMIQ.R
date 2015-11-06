@@ -91,13 +91,13 @@ blc2 <- function (Y, w, maxiter = 25, tol = 1e-06, weights = NULL, verbose = TRU
     } else {}
     mu = a = b = matrix(Inf, K, J)
     crit = Inf
-    for (i in 1:maxiter) {
+    for (i in seq_len(maxiter)) {
         warn0 = options()$warn
         options(warn = -1)
         eta = apply(weights * w, 2, sum)/sum(weights)
         mu0 = mu
-        for (k in 1:K) {
-            for (j in 1:J) {
+        for (k in seq_len(K)) {
+            for (j in seq_len(J)) {
                 ab = betaEst2(Y[, j], w[, k], weights)
                 a[k, j] = ab[1]
                 b[k, j] = ab[2]
@@ -105,8 +105,8 @@ blc2 <- function (Y, w, maxiter = 25, tol = 1e-06, weights = NULL, verbose = TRU
             }
         }
         ww = array(0, dim = c(n, J, K))
-        for (k in 1:K) {
-            for (j in 1:J) {
+        for (k in seq_len(K)) {
+            for (j in seq_len(J)) {
                 ww[Yobs[, j], j, k] = dbeta(Y[Yobs[, j], j],
                   a[k, j], b[k, j], log = TRUE)
             }
@@ -165,7 +165,7 @@ BMIQ <- function (beta.v, design.v, nL = 3, doH = TRUE, nfit = 50000, th1.v = c(
     } else {}
     set.seed(1)
     # rand.idx <- sample(1:length(beta1.v), nfit, replace = FALSE)
-    rand.idx <- sample(1:length(beta1.v), min(c(nfit, length(beta1.v)), na.rm = TRUE), replace = FALSE)
+    rand.idx <- sample(seq_along(beta1.v), min(c(nfit, length(beta1.v)), na.rm = TRUE), replace = FALSE)
     # em1.o <- blc2(matrix(beta1.v[rand.idx], ncol = 1), w = w0.m[rand.idx, ], maxiter = niter, tol = tol)
     em1.o <- blc2(Y = matrix(beta1.v[rand.idx], ncol = 1), w = w0.m[rand.idx, ], maxiter = niter, tol = tol, verbose = verbose)
     subsetclass1.v <- apply(em1.o$w, 1, which.max)
@@ -184,13 +184,13 @@ BMIQ <- function (beta.v, design.v, nL = 3, doH = TRUE, nfit = 50000, th1.v = c(
     ### generate plot from estimated mixture
     if (plots) {
         cat("### Check ###\n")
-        tmpL.v <- as.vector(rmultinom(1:nL, length(beta1.v), prob = em1.o$eta))
+        tmpL.v <- as.vector(rmultinom(seq_len(nL), length(beta1.v), prob = em1.o$eta))
         tmpB.v <- vector()
-        for(l in 1:nL) {
+        for(l in seq_len(nL)) {
             tmpB.v <- c(tmpB.v, rbeta(tmpL.v[l], em1.o$a[l, 1], em1.o$b[l, 1]))
         }
 
-        pdf(paste("Type1fit-", sampleID, ".pdf", sep = ""), width = 6, height = 4)
+        pdf(paste0("Type1fit-", sampleID, ".pdf"), width = 6, height = 4)
             plot(density(beta1.v))
             d.o <- density(tmpB.v)
             points(d.o$x, d.o$y, col = "green", type = "l")
@@ -223,7 +223,7 @@ BMIQ <- function (beta.v, design.v, nL = 3, doH = TRUE, nfit = 50000, th1.v = c(
         cat("### Fitting EM beta mixture to type2 probes ###\n")
     } else {}
     set.seed(1)
-    rand.idx <- sample(1:length(beta2.v), min(c(nfit, length(beta2.v)), na.rm = TRUE), replace = FALSE)
+    rand.idx <- sample(seq_along(beta2.v), min(c(nfit, length(beta2.v)), na.rm = TRUE), replace = FALSE)
     # em2.o <- blc(matrix(beta2.v[rand.idx], ncol = 1), w = w0.m[rand.idx, ], maxiter = niter, tol = tol)
     em2.o <- blc2(Y = matrix(beta2.v[rand.idx], ncol = 1), w = w0.m[rand.idx, ], maxiter = niter, tol = tol, verbose = verbose)
     if (verbose) {
@@ -242,12 +242,12 @@ BMIQ <- function (beta.v, design.v, nL = 3, doH = TRUE, nfit = 50000, th1.v = c(
 
     ### generate plot
     if (plots) {
-        tmpL.v <- as.vector(rmultinom(1:nL, length(beta2.v), prob = em2.o$eta))
+        tmpL.v <- as.vector(rmultinom(seq_len(nL), length(beta2.v), prob = em2.o$eta))
         tmpB.v <- vector()
-        for (lt in 1:nL) {
+        for (lt in seq_len(nL)) {
             tmpB.v <- c(tmpB.v, rbeta(tmpL.v[lt], em2.o$a[lt, 1], em2.o$b[lt, 1]))
         }
-        pdf(paste("Type2fit-", sampleID, ".pdf", sep = ""), width = 6, height = 4)
+        pdf(paste0("Type2fit-", sampleID, ".pdf"), width = 6, height = 4)
             plot(density(beta2.v))
             d.o <- density(tmpB.v)
             points(d.o$x, d.o$y, col = "green", type = "l")
@@ -255,8 +255,9 @@ BMIQ <- function (beta.v, design.v, nL = 3, doH = TRUE, nfit = 50000, th1.v = c(
         dev.off()
     } else {}
 
-    classAV1.v <- vector();classAV2.v <- vector()
-    for (l in 1:nL) {
+    classAV1.v <- vector()
+    classAV2.v <- vector()
+    for (l in seq_len(nL)) {
         classAV1.v[l] <-  em1.o$mu[l, 1]
         classAV2.v[l] <-  em2.o$mu[l, 1]
     }
@@ -328,7 +329,7 @@ BMIQ <- function (beta.v, design.v, nL = 3, doH = TRUE, nfit = 50000, th1.v = c(
         d2.o <- density(beta2.v)
         d2n.o <- density(nbeta2.v)
         ymax <- max(d2.o$y, d1.o$y, d2n.o$y)
-        pdf(paste("CheckBMIQ-", sampleID, ".pdf", sep = ""), width = 6, height = 4)
+        pdf(paste0("CheckBMIQ-", sampleID, ".pdf"), width = 6, height = 4)
             plot(density(beta2.v), type = "l", ylim = c(0, ymax), xlim = c(0, 1))
             points(d1.o$x, d1.o$y, col = "red", type = "l")
             points(d2n.o$x, d2n.o$y, col = "blue", type = "l")
