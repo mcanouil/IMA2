@@ -2,6 +2,8 @@ IMA2 (Illumina Methylation Analyzer 2)
 ======================================
 [![Build Status](https://travis-ci.org/mcanouil/IMA2.svg?branch=master)](https://travis-ci.org/mcanouil/IMA2)
 
+[This package is not maintained anymore => Obsolete]
+
 http://mcanouil.github.io/IMA2
 
 *IMA2 is based on IMA package (3.1.2) at [http://rforge.net/IMA/](http://rforge.net/IMA/).*
