@@ -1,6 +1,5 @@
 IMA2 (Illumina Methylation Analyzer 2)
 ======================================
-[![Build Status](https://travis-ci.org/mcanouil/IMA2.svg?branch=master)](https://travis-ci.org/mcanouil/IMA2)
 
 [This package is not maintained anymore => Obsolete]
 
